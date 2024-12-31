@@ -39,7 +39,7 @@ const Error = styled.span`
 export default function FormRow({label, error, children}) {
   return (
     <StyledFormRow>
-        {label && <Label htmlFor={children.props.id}>{label}</Label>}
+        {label && <Label htmlFor={children.props?.id}>{label}</Label>}
         {/* <Input type="text" id="name" {...register("name", {
           required: 'This field is required!'
         })} /> */}

@@ -33,6 +33,17 @@ const Heading = styled.h1`
     );
   }} 
 
+  ${function (props) {
+    return (
+      props.as === "h4" &&
+      css`
+        font-size: 3rem;
+        font-weight: 600;
+        text-align: center;
+      `
+    );
+  }} 
+
   line-height: 1.4;
 `;
 
