@@ -3,7 +3,7 @@ import {
   HiOutlineChatBubbleBottomCenterText,
   HiOutlineCheckCircle,
   HiOutlineCurrencyPound,
-  HiOutlineHomeModern
+  HiOutlineHomeModern,
 } from "react-icons/hi2";
 import styled from "styled-components";
 
@@ -68,6 +68,32 @@ const Guest = styled.div`
   }
 `;
 
+// const Price = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding: 1.6rem 3.2rem;
+//   border-radius: var(--border-radius-sm);
+//   margin-top: 2.4rem;
+
+//   background-color: ${(props) =>
+//     props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
+//   color: ${(props) =>
+//     props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
+
+//   & p:last-child {
+//     text-transform: uppercase;
+//     font-size: 1.4rem;
+//     font-weight: 600;
+//   }
+
+//   svg {
+//     height: 2.4rem;
+//     width: 2.4rem;
+//     color: currentColor !important;
+//   }
+// `;
+
 const Price = styled.div`
   display: flex;
   align-items: center;
@@ -77,9 +103,9 @@ const Price = styled.div`
   margin-top: 2.4rem;
 
   background-color: ${(props) =>
-    props.isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
+    props.$isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)"};
   color: ${(props) =>
-    props.isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
+    props.$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)"};
 
   & p:last-child {
     text-transform: uppercase;
@@ -163,7 +189,7 @@ function BookingDataBox({ booking }) {
           {hasBreakfast ? "Yes" : "No"}
         </DataItem>
 
-        <Price isPaid={isPaid}>
+        <Price $isPaid={isPaid}>
           <DataItem icon={<HiOutlineCurrencyPound />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 

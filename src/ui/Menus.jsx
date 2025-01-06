@@ -36,8 +36,8 @@ const StyledList = styled.ul`
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-md);
 
-  right: ${(props) => props.position.x}px;
-  top: ${(props) => props.position.y}px;
+  right: ${(props) => props.$position.x}px;
+  top: ${(props) => props.$position.y}px;
 `;
 
 const StyledButton = styled.button`
@@ -90,6 +90,8 @@ function Toggle({ id }) {
   //   openId === "" || openId !== id ? open(id) : close();
   // }
   function handleClick(event) {
+    event.stopPropagation();
+
     const rectangle = event.target.closest("button").getBoundingClientRect();
 
     setPosition({
@@ -113,12 +115,12 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { openId, position, close } = useContext(MenusContext);
-  const clickOutsideRef = useOutsideClick(close);
+  const clickOutsideRef = useOutsideClick(close, false);
 
   if (openId !== id) return null;
 
   return createPortal(
-    <StyledList position={position} ref={clickOutsideRef}>
+    <StyledList $position={position} ref={clickOutsideRef}>
       {children}
     </StyledList>,
 

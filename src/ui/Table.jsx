@@ -18,24 +18,48 @@ const CommonRow = styled.div`
   transition: none;
 `;
 
+// const StyledHeader = styled(CommonRow)`
+//   padding: 1.6rem 2.4rem;
+
+//   background-color: var(--color-grey-50);
+//   border-bottom: 1px solid var(--color-grey-100);
+//   text-transform: uppercase;
+//   letter-spacing: 0.4px;
+//   font-weight: 600;
+//   color: var(--color-grey-600);
+// `;
+
 const StyledHeader = styled(CommonRow)`
   padding: 1.6rem 2.4rem;
-
   background-color: var(--color-grey-50);
   border-bottom: 1px solid var(--color-grey-100);
   text-transform: uppercase;
   letter-spacing: 0.4px;
   font-weight: 600;
   color: var(--color-grey-600);
+
+  // Use $columns to prevent forwarding this prop
+  grid-template-columns: ${(props) => props.$columns};
 `;
+
+// const StyledRow = styled(CommonRow)`
+//   padding: 1.2rem 2.4rem;
+
+//   &:not(:last-child) {
+//     border-bottom: 1px solid var(--color-grey-100);
+//   }
+// `;
 
 const StyledRow = styled(CommonRow)`
   padding: 1.2rem 2.4rem;
+  // Use $columns to prevent forwarding this prop
+  grid-template-columns: ${(props) => props.$columns};
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
   }
 `;
+
 
 const StyledBody = styled.section`
   margin: 0.4rem 0;
@@ -76,7 +100,7 @@ function Header({ children }) {
   const {columns} = useContext(TableContext)
 
   return(
-    <StyledHeader role="row" columns={columns} as='header'>
+    <StyledHeader role="row" $columns={columns} as='header'>
       {children}
     </StyledHeader>
   )
@@ -86,7 +110,7 @@ function Row({ children }) {
   const {columns}=useContext(TableContext)
 
   return(
-    <StyledRow role="row" columns={columns}>
+    <StyledRow role="row" $columns={columns}>
       {children}
     </StyledRow>
   )
